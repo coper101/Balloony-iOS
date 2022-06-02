@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct BalloonyApp: App {
+    @StateObject var balloonModelData = BalloonModelData()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+             Balloony()
+                 .environmentObject(balloonModelData)
         }
     }
 }
