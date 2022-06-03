@@ -9,16 +9,24 @@ import SwiftUI
 
 class BalloonModelData: ObservableObject {
     
-    @Published var selectedBalloonIdx = 1
+    @Published var selectedBalloonIdx = 0
     
     @Published var balloons: [Balloon] = [
         .init(
-            name: "Unicorn",
+            name: "Cosmic",
             gradientColors: [
-                .combination1a,
-                .combination1b
+                .combination5a,
+                .combination5b
             ],
-            topViewLength: 86
+            topViewLength: 94
+        ),
+        .init(
+            name: "Saturn",
+            gradientColors: [
+                .combination4a,
+                .combination4b
+            ],
+            topViewLength: 201
         ),
         .init(
             name: "Aqua",
@@ -37,20 +45,12 @@ class BalloonModelData: ObservableObject {
             topViewLength: 48
         ),
         .init(
-            name: "Saturn",
+            name: "Unicorn",
             gradientColors: [
-                .combination4a,
-                .combination4b
+                .combination1a,
+                .combination1b
             ],
-            topViewLength: 201
-        ),
-        .init(
-            name: "Cosmic",
-            gradientColors: [
-                .combination5a,
-                .combination5b
-            ],
-            topViewLength: 94
+            topViewLength: 86
         )
     ]
 }

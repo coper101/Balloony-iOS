@@ -49,32 +49,32 @@ struct BalloonCirclingView: View {
             
             // Layer 2: Balloons
             BalloonTopView(
-                gradientColors: balloons[0].gradientColors,
-                length: balloons[0].topViewLength
+                gradientColors: balloons[4].gradientColors,
+                length: balloons[4].topViewLength
             )
                 .offset(x: -170, y: -380)
+            
+            BalloonTopView(
+                gradientColors: balloons[1].gradientColors,
+                length: balloons[1].topViewLength
+            )
+                .offset(x: -240, y: -110)
             
             BalloonTopView(
                 gradientColors: balloons[3].gradientColors,
                 length: balloons[3].topViewLength
             )
-                .offset(x: -240, y: -110)
-            
-            BalloonTopView(
-                gradientColors: balloons[2].gradientColors,
-                length: balloons[2].topViewLength
-            )
                 .offset(x: -30, y: -470)
             
             BalloonTopView(
-                gradientColors: balloons[4].gradientColors,
-                length: balloons[4].topViewLength
+                gradientColors: balloons[0].gradientColors,
+                length: balloons[0].topViewLength
             )
                 .offset(x: 140, y: -410)
             
             BalloonTopView(
-                gradientColors: balloons[1].gradientColors,
-                length: balloons[1].topViewLength
+                gradientColors: balloons[2].gradientColors,
+                length: balloons[2].topViewLength
             )
                 .offset(x: -20, y: -280)
             

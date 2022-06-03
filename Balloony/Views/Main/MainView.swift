@@ -15,8 +15,8 @@ struct ScreenSize {
 struct MainView: View {
     // MARK: - Properties
     @EnvironmentObject var balloonModelData: BalloonModelData
-    @State var balloonYOffset: CGFloat = ScreenSize.height * 0.75
-    @State var balloonXOffset: CGFloat = .zero
+    @State var balloonYOffset: CGFloat = ScreenSize.height * 0.7
+    @State var balloonXOffset: CGFloat = -146
     @State var cardYOffset: CGFloat = ScreenSize.height * 0.95
 
     @State var heightTranslation: CGFloat = .zero
@@ -36,27 +36,22 @@ struct MainView: View {
                 let amountChange = newTranslationHeight - heightTranslation
                 heightTranslation = newTranslationHeight
                 
-                guard (amountChange < 0 && cardYOffset > 0) ||
-                    (amountChange > 0 && cardYOffset <= ScreenSize.height * 0.3)
-                else {
+                let moreThanMin = amountChange < 0 && cardYOffset > ScreenSize.height * 0.2
+                let lessThanMax = amountChange > 0 && cardYOffset <= ScreenSize.height * 0.44
+                
+                guard moreThanMin || lessThanMax else {
                     return
                 }
                 
-                // print("amountChange: ", amountChange)
+                // move to new position
                 withAnimation {
                     balloonYOffset += amountChange
                     cardYOffset += amountChange
                 }
                             }
             .onEnded { _ in
+                // reset
                 heightTranslation = .zero
-            }
-    }
-    
-    var dragBalloons: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                print("width trans: ", value.translation.width)
             }
     }
     
@@ -64,42 +59,23 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .top) {
             
-            // MARK: Layer 1: Content
-            ZStack{
+            // MARK: Layer 1: Balloons
+            ZStack {
                 
-                BalloonFrontView(
-                    gradientColors: balloons[2].gradientColors,
-                    size: balloons[2].frontViewSizeSmall
-                )
-                    .offset(
-                        x: -80 - balloonXOffset,
-                        y: -70 + balloonYOffset
-                    )
-                    .opacity(0.5)
-                
-                BalloonFrontView(
-                    gradientColors: balloons[3].gradientColors,
-                    size: balloons[3].frontViewSizeSmall
-                )
-                    .offset(
-                        x: 80 + balloonXOffset,
-                        y: -70 + balloonYOffset
-                    )
-                    .opacity(0.5)
-                
-                BalloonFrontView(
-                    gradientColors: balloons[1].gradientColors,
-                    size: balloons[1].frontViewSizeBig
+                BalloonListView(
+                    selectedIndex: $balloonModelData.selectedBalloonIdx,
+                    xOffsetAnimation: balloonXOffset,
+                    balloons: balloons
                 )
                     .offset(y: balloonYOffset)
                 
             } //: ZStack
-            .gesture(dragBalloons)
+            .frame(width: ScreenSize.width)
             .onAppear {
                 withAnimation(.easeOut(duration: 1.0)) {
-                    balloonYOffset = ScreenSize.height * 0.2
-                    balloonXOffset = 100
-                    cardYOffset = ScreenSize.height * 0.3
+                    balloonYOffset = ScreenSize.height * 0.16
+                    balloonXOffset = 10
+                    cardYOffset = ScreenSize.height * 0.45
                 }
             }
                 
@@ -111,7 +87,7 @@ struct MainView: View {
                 ReviewCardView()
                    
             } //: VStack
-            .fillMaxSize()
+            .fillMaxWidth()
             .zIndex(1)
             .padding(.horizontal, 21)
             .offset(y: cardYOffset)
@@ -134,7 +110,8 @@ struct MainView: View {
                 endPoint: .bottom
             )
         )
-    }
+        
+    } //: ZStack
 }
 
 struct MainView_Previews: PreviewProvider {
