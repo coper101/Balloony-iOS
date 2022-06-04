@@ -11,6 +11,7 @@ struct FeatureRowView: View {
     // MARK: - Properties
     var feature: Feature
     
+    // MARK: - Body
     var body: some View {
         HStack(spacing: 9) {
             
@@ -28,11 +29,11 @@ struct FeatureRowView: View {
     }
 }
 
+// MARK: - Preview
 struct FeatureRow_Previews: PreviewProvider {
     static var features = BalloonModelData().balloons[0].features
     
     static var previews: some View {
-        
         ForEach(features, id: \.title) { feature in
             FeatureRowView(feature: feature)
                 .previewLayout(.sizeThatFits)

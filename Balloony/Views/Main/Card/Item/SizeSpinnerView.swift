@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SizeSpinnerView: View {
     // MARK: - Properties
-    @State var contentOffset: CGPoint = .zero
-    @State var offsetToScroll: CGPoint = .zero
-    @State var selectedSize: Sizes = .fiveInch
+    @State private var contentOffset: CGPoint = .zero
+    @State private var offsetToScroll: CGPoint = .zero
+    @Binding var selectedSize: Sizes
     
     let height: CGFloat = 100
     
@@ -33,7 +33,6 @@ struct SizeSpinnerView: View {
             let width = geometry.size.width
             let height = geometry.size.height
             let blockHeight = height / 3
-            
                     
             LegacyScrollView(
                 showsIndicators: false,
@@ -43,7 +42,6 @@ struct SizeSpinnerView: View {
                 contentOffset: $contentOffset,
                 isScrollDisabled: false
             ) {
-                
                 VStack(spacing: 0) {
 
                     // SPACER
@@ -75,7 +73,6 @@ struct SizeSpinnerView: View {
                 } //: VStack
                 .frame(width: width)
                         
-                    
             } //: LegacyScrollView
             .frame(width: width)
             .mask(spinnerGradient)
@@ -92,6 +89,13 @@ struct SizeSpinnerView: View {
             
         } //: GeometryReader
         .frame(width: 50, height: height)
+        .onChange(of: selectedSize) { size in
+            guard size == .fiveInch else {
+                return
+            }
+            offsetToScroll = .zero
+            contentOffset = .zero
+        }
     }
     
 
@@ -128,10 +132,9 @@ struct SizeSpinnerView: View {
 // MARK: - Preview
 struct SizeSpinnerView_Previews: PreviewProvider {
     static var previews: some View {
-        SizeSpinnerView()
+        SizeSpinnerView(selectedSize: .constant(.fiveInch))
             .previewLayout(.sizeThatFits)
             .padding()
             .background(Colors.background.color)
-        
     }
 }

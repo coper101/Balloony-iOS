@@ -22,33 +22,37 @@ struct SplashView: View {
             ) {
 
                 // Row 1:
-                Rectangle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Colors.combination4b.color,
-                                Colors.combination4a.color,
-                                Colors.combination5b.color,
-                                Colors.combination1b.color,
-                                Colors.combination1a.color,
-                                Colors.combination5a.color,
-                                Colors.combination2a.color
-                            ],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .frame(width: 1771, height: 74)
-                    .offset(x: xOffset)
-                    .mask {
-                        Text("Balloony")
-                            .textStyle(
-                                foregroundColor: .primary,
-                                font: .quicksandSemiBold,
-                                size: 62
+                if #available(iOS 15.0, *) {
+                    Rectangle()
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Colors.combination4b.color,
+                                    Colors.combination4a.color,
+                                    Colors.combination5b.color,
+                                    Colors.combination1b.color,
+                                    Colors.combination1a.color,
+                                    Colors.combination5a.color,
+                                    Colors.combination2a.color
+                                ],
+                                startPoint: .leading,
+                                endPoint: .trailing
                             )
-                            .fillMaxSize(alignment: .leading)
-                    }
+                        )
+                        .frame(width: 1771, height: 74)
+                        .offset(x: xOffset)
+                        .mask {
+                            Text("Balloony")
+                                .textStyle(
+                                    foregroundColor: .primary,
+                                    font: .quicksandSemiBold,
+                                    size: 62
+                                )
+                                .fillMaxSize(alignment: .leading)
+                        }
+                } else {
+                    // Fallback on earlier versions
+                }
 
                 // Row 2:
                 Text("Gradient Colored Balloons")

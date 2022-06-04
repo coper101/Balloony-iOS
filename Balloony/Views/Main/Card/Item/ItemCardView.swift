@@ -19,8 +19,9 @@ enum Sizes: Int, CaseIterable, Identifiable {
 struct ItemCardView: View {
     // MARK: - Properties
     var balloon: Balloon
-    @State private var selectedSize: Sizes = .nineInch
-    @State private var quantity = "1"
+    @Binding var selectedSize: Sizes
+    @Binding var quantity: String
+    var totalPrice: Double
 
     // MARK: - Body
     var body: some View {
@@ -35,8 +36,10 @@ struct ItemCardView: View {
                         font: .quicksandSemiBold,
                         size: 25
                     )
+                    .fillMaxWidth(alignment: .leading)
                     .padding(.top, 15)
-                Spacer()
+                    .id(balloon.name) // for animation to work
+                    .transition(.opacity.animation(.easeInOut(duration: 0.5)))
                 
                 // Col 2: SALE BANNER
                 SaleBannerView()
@@ -50,8 +53,7 @@ struct ItemCardView: View {
             HStack(alignment: .center, spacing: 0) {
                 
                 // Col 1: SIZE SPINNER
-                SizeSpinnerView()
-                
+                SizeSpinnerView(selectedSize: $selectedSize)
                 Spacer()
                 
                 // Col 2: FEATURES
@@ -81,14 +83,14 @@ struct ItemCardView: View {
                 Button(action: {}) {
                     
                     ZStack {
-                        Text("BUY $8.50")
+                        Text("BUY $\(totalPrice.roundTo2Dp())")
                             .textStyle(
                                 foregroundColor: .background,
                                 font: .quicksandSemiBold,
                                 size: 16
                             )
                     }
-                    .padding(.horizontal, 25)
+                    .padding(.horizontal, 21)
                     .frame(height: 35)
                     .background(Colors.secondary.color)
                     .clipShape(
@@ -113,12 +115,14 @@ struct ItemCardView_Previews: PreviewProvider {
     static var balloons = BalloonModelData().balloons
 
     static var previews: some View {
-        
-        ItemCardView(balloon: balloons[0])
+        ItemCardView(
+            balloon: balloons[0],
+            selectedSize: .constant(.fiveInch),
+            quantity: .constant("1"),
+            totalPrice: balloons[0].price
+        )
             .previewLayout(.sizeThatFits)
-            .padding()
+            .padding(21)
             .background(Colors.background2.color)
-            .previewDisplayName("Item Card")
-        
     }
 }

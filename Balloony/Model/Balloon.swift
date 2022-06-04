@@ -15,6 +15,7 @@ struct Feature {
 struct Balloon {
     typealias Size = (width: CGFloat, height: CGFloat)
     let name: String
+    var price = 8.50
     let gradientColors: [Colors]
     var topViewLength: CGFloat
     let frontViewSizeSmall: Size = (109, 132)
@@ -33,4 +34,13 @@ struct Balloon {
             iconName: "String"
         )
     ]
+}
+
+extension Balloon: Equatable {
+    static func == (
+        lhs: Balloon,
+        rhs: Balloon
+    ) -> Bool {
+        return lhs.name == rhs.name
+    }
 }

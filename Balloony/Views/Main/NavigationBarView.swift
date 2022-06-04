@@ -44,7 +44,7 @@ struct NavigationBarView: View {
             
         } //: HStack
         .fillMaxWidth()
-        .frame(height: 60)
+        .frame(height: UICompSize.navBarHeight)
     }
 }
 

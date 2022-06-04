@@ -18,12 +18,36 @@ struct SaleBannerView: View {
                 let width = geometry.size.width
                 let height = geometry.size.height
                 
-                path.move(to: .zero)
-                path.addLine(to: .init(x: width, y: .zero))
-                path.addLine(to: .init(x: width, y: height))
-                path.addLine(to: .init(x: width * 0.5, y: 0.8 * height))
-                path.addLine(to: .init(x: .zero, y: height))
-                path.addLine(to: .zero)
+                path.move(
+                    to: .zero
+                )
+                path.addLine(
+                    to: .init(
+                        x: width,
+                        y: .zero
+                    )
+                )
+                path.addLine(
+                    to: .init(
+                        x: width,
+                        y: height
+                    )
+                )
+                path.addLine(
+                    to: .init(
+                        x: width * 0.5,
+                        y: 0.8 * height
+                    )
+                )
+                path.addLine(
+                    to: .init(
+                        x: .zero,
+                        y: height
+                    )
+                )
+                path.addLine(
+                    to: .zero
+                )
             }
             .fill(Color.red)
             
@@ -39,7 +63,8 @@ struct SaleBannerView: View {
             )
                 .padding(.bottom, 20)
         )
-    }
+        
+    } //: banner
 
     // MARK: - Body
     var body: some View {
@@ -64,11 +89,11 @@ struct SaleBannerView: View {
     }
 }
 
+// MARK: - Preview
 struct SaleBannerView_Previews: PreviewProvider {
     static var previews: some View {
         SaleBannerView()
             .previewLayout(.sizeThatFits)
-            .previewDisplayName("Sale Banner")
             .padding()
             .background(Colors.background.color)
     }

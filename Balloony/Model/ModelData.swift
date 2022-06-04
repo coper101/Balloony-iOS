@@ -9,8 +9,30 @@ import SwiftUI
 
 class BalloonModelData: ObservableObject {
     
-    @Published var selectedBalloonIdx = 0
+    // UI
+    @Published var selectedBalloonIdx = 0 {
+        didSet {
+            // set to default values
+            selectedSize = .fiveInch
+            quantity = "1"
+        }
+    }
+    @Published var selectedSize: Sizes = .fiveInch
+    @Published var quantity = "1"
     
+    var selectedBalloon: Balloon {
+        balloons[selectedBalloonIdx]
+    }
+    
+    var totalPrice: Double {
+        let price = selectedBalloon.price
+        guard let quantity = Int(quantity) else {
+            return price
+        }
+        return price * Double(quantity)
+    }
+    
+    // Data
     @Published var balloons: [Balloon] = [
         .init(
             name: "Cosmic",
@@ -53,4 +75,5 @@ class BalloonModelData: ObservableObject {
             topViewLength: 86
         )
     ]
+    
 }

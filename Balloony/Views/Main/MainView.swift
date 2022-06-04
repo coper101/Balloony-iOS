@@ -7,26 +7,17 @@
 
 import SwiftUI
 
-struct ScreenSize {
-    static let width = UIScreen.main.bounds.width
-    static let height = UIScreen.main.bounds.height
-}
-
 struct MainView: View {
     // MARK: - Properties
-    @EnvironmentObject var balloonModelData: BalloonModelData
-    @State var balloonYOffset: CGFloat = ScreenSize.height * 0.7
-    @State var balloonXOffset: CGFloat = -146
-    @State var cardYOffset: CGFloat = ScreenSize.height * 0.95
-
+    @EnvironmentObject private var balloonModelData: BalloonModelData
+    @State private var balloonYOffset: CGFloat = ScreenSize.height * 0.7
+    @State private var balloonXOffset: CGFloat = -146
+    @State private var cardYOffset: CGFloat = ScreenSize.height * 0.95
     @State var heightTranslation: CGFloat = .zero
-
-    var balloons: [Balloon] {
-        balloonModelData.balloons
-    }
     
-    var selectedBalloon: Balloon {
-        balloons[balloonModelData.selectedBalloonIdx]
+    let balloonYMaxOffset = UICompSize.navBarHeight + Insets.top.value + 50
+    var cardYMaxOffset: CGFloat {
+        balloonYMaxOffset + UICompSize.balloonListHeight - 50
     }
     
     var drag: some Gesture {
@@ -37,7 +28,7 @@ struct MainView: View {
                 heightTranslation = newTranslationHeight
                 
                 let moreThanMin = amountChange < 0 && cardYOffset > ScreenSize.height * 0.2
-                let lessThanMax = amountChange > 0 && cardYOffset <= ScreenSize.height * 0.44
+                let lessThanMax = amountChange > 0 && cardYOffset <= cardYMaxOffset
                 
                 guard moreThanMin || lessThanMax else {
                     return
@@ -65,7 +56,7 @@ struct MainView: View {
                 BalloonListView(
                     selectedIndex: $balloonModelData.selectedBalloonIdx,
                     xOffsetAnimation: balloonXOffset,
-                    balloons: balloons
+                    balloons: balloonModelData.balloons
                 )
                     .offset(y: balloonYOffset)
                 
@@ -73,17 +64,24 @@ struct MainView: View {
             .frame(width: ScreenSize.width)
             .onAppear {
                 withAnimation(.easeOut(duration: 1.0)) {
-                    balloonYOffset = ScreenSize.height * 0.16
+                    balloonYOffset = balloonYMaxOffset
                     balloonXOffset = 10
-                    cardYOffset = ScreenSize.height * 0.45
+                    cardYOffset = cardYMaxOffset
                 }
             }
                 
             // MARK: - Layer 2: Cards
             VStack(spacing: 30) {
                 
-                ItemCardView(balloon: selectedBalloon)
+                // Row 1: BALLOON DESC CARD
+                ItemCardView(
+                    balloon: balloonModelData.selectedBalloon,
+                    selectedSize: $balloonModelData.selectedSize,
+                    quantity: $balloonModelData.quantity,
+                    totalPrice: balloonModelData.totalPrice
+                )
                 
+                // Row 2: BALLOON REVIEWS
                 ReviewCardView()
                    
             } //: VStack
@@ -96,6 +94,7 @@ struct MainView: View {
             // MARK: Layer 3: Navigation Bar
             NavigationBarView()
                 .zIndex(2)
+                .padding(.top, Insets.top.value)
 
         } //: ZStack
         .fillMaxSize(alignment: .top)

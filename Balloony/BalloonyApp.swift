@@ -15,6 +15,7 @@ struct BalloonyApp: App {
         WindowGroup {
              Balloony()
                  .environmentObject(balloonModelData)
+                 .edgesIgnoringSafeArea(.all)
         }
     }
 }

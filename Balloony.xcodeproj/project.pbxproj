@@ -24,6 +24,8 @@
 		27D1621B2847C2D0006E016B /* BalloonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D1621A2847C2D0006E016B /* BalloonListView.swift */; };
 		27D1621D28485ED5006E016B /* RatingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D1621C28485ED5006E016B /* RatingBarView.swift */; };
 		27D1621F284872F4006E016B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27D1621E284872F4006E016B /* Launch Screen.storyboard */; };
+		27D16222284B21DA006E016B /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D16221284B21DA006E016B /* Screen.swift */; };
+		27D16226284B23F3006E016B /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D16225284B23F3006E016B /* Text.swift */; };
 		27DCC0F2283E85970080521B /* Balloony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DCC0F1283E85970080521B /* Balloony.swift */; };
 		27DCC0F4283E85FD0080521B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DCC0F3283E85FD0080521B /* MainView.swift */; };
 		27DCC132283F8BA50080521B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DCC131283F8BA50080521B /* NavigationBarView.swift */; };
@@ -32,7 +34,6 @@
 		27DCC139283F971F0080521B /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DCC138283F971F0080521B /* ModelData.swift */; };
 		27DCC13B283F97790080521B /* BalloonCirclingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DCC13A283F97790080521B /* BalloonCirclingView.swift */; };
 		27DCC13D283FA3E30080521B /* BalloonFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DCC13C283FA3E30080521B /* BalloonFrontView.swift */; };
-		27EDDE442845C03B00E7D900 /* ScrollOffsetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EDDE432845C03B00E7D900 /* ScrollOffsetView.swift */; };
 		27EDDE8C28475AF000E7D900 /* LegacyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EDDE8B28475AF000E7D900 /* LegacyScrollView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		27D1621A2847C2D0006E016B /* BalloonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonListView.swift; sourceTree = "<group>"; };
 		27D1621C28485ED5006E016B /* RatingBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBarView.swift; sourceTree = "<group>"; };
 		27D1621E284872F4006E016B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		27D16221284B21DA006E016B /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		27D16225284B23F3006E016B /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		27DCC0F1283E85970080521B /* Balloony.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balloony.swift; sourceTree = "<group>"; };
 		27DCC0F3283E85FD0080521B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		27DCC131283F8BA50080521B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
@@ -64,7 +67,6 @@
 		27DCC138283F971F0080521B /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		27DCC13A283F97790080521B /* BalloonCirclingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonCirclingView.swift; sourceTree = "<group>"; };
 		27DCC13C283FA3E30080521B /* BalloonFrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonFrontView.swift; sourceTree = "<group>"; };
-		27EDDE432845C03B00E7D900 /* ScrollOffsetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOffsetView.swift; sourceTree = "<group>"; };
 		27EDDE8B28475AF000E7D900 /* LegacyScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +89,6 @@
 				270E318F2840BB7E003FB1C9 /* FeatureRowView.swift */,
 				270E31912840C39F003FB1C9 /* StepperQuantityView.swift */,
 				270E31932840D3EA003FB1C9 /* SizeSpinnerView.swift */,
-				27EDDE432845C03B00E7D900 /* ScrollOffsetView.swift */,
 				27EDDE8B28475AF000E7D900 /* LegacyScrollView.swift */,
 			);
 			path = Item;
@@ -156,6 +157,7 @@
 				279D3A50283E3E0600A8CAC3 /* BalloonyApp.swift */,
 				279D3A5E283E3E8100A8CAC3 /* Views */,
 				279D3A5F283E3E9600A8CAC3 /* Model */,
+				27D16220284B21B7006E016B /* Utils */,
 				279D3A60283E3EA800A8CAC3 /* Styles */,
 				279D3A56283E3E0900A8CAC3 /* Preview Content */,
 			);
@@ -193,9 +195,9 @@
 		279D3A60283E3EA800A8CAC3 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				279D3A65283E3FD500A8CAC3 /* Fonts */,
 				279D3A54283E3E0900A8CAC3 /* Assets.xcassets */,
 				279D3A6B283E41D300A8CAC3 /* Style.swift */,
+				279D3A65283E3FD500A8CAC3 /* Fonts */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -207,6 +209,15 @@
 				279D3A66283E3FF300A8CAC3 /* Quicksand-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		27D16220284B21B7006E016B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				27D16221284B21DA006E016B /* Screen.swift */,
+				27D16225284B23F3006E016B /* Text.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		27DCC135283F8FC80080521B /* Balloon */ = {
@@ -300,10 +311,11 @@
 				27DCC13B283F97790080521B /* BalloonCirclingView.swift in Sources */,
 				27D1621D28485ED5006E016B /* RatingBarView.swift in Sources */,
 				27DCC0F2283E85970080521B /* Balloony.swift in Sources */,
+				27D16222284B21DA006E016B /* Screen.swift in Sources */,
+				27D16226284B23F3006E016B /* Text.swift in Sources */,
 				270E31922840C39F003FB1C9 /* StepperQuantityView.swift in Sources */,
 				2709C2712847BF880064A3D6 /* ReviewCardView.swift in Sources */,
 				27DCC137283F94130080521B /* Balloon.swift in Sources */,
-				27EDDE442845C03B00E7D900 /* ScrollOffsetView.swift in Sources */,
 				27D162192847C1A8006E016B /* CardDividerView.swift in Sources */,
 				27DCC132283F8BA50080521B /* NavigationBarView.swift in Sources */,
 				27EDDE8C28475AF000E7D900 /* LegacyScrollView.swift in Sources */,
@@ -370,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -425,7 +437,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -447,6 +459,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Balloony/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Balloony;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -454,6 +467,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,6 +493,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Balloony/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Balloony;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -486,6 +501,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

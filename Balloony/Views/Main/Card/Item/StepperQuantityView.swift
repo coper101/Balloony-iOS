@@ -99,8 +99,8 @@ struct StepperQuantityView_Previews: PreviewProvider {
     }
 }
 
+// MARK: - Style
 struct StepperTextFieldStyle: TextFieldStyle {
-    
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
             .textStyle(
@@ -110,5 +110,4 @@ struct StepperTextFieldStyle: TextFieldStyle {
             .frame(width: 30)
             .multilineTextAlignment(.center)
     }
-    
 }

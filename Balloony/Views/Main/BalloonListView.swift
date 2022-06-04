@@ -43,13 +43,16 @@ struct BalloonListView: View {
             (size / 2) + 1
     }
     
-    func getXOffset(_ i: Int) -> CGFloat {
-        if i == (centerIndex - 1) {
-            return -xOffsetAnimation
-        } else if i == (centerIndex + 1) {
-            return xOffsetAnimation
+    var itemRange: ClosedRange<Int> {
+        1...size
+    }
+    
+    var itemRangeDic: [ClosedRange<CGFloat>: Int] {
+        var dic = [ClosedRange<CGFloat>: Int]()
+        itemRange.forEach {
+            dic[calcYOffsetToFocus($0, centerIndex)] = $0
         }
-        return 0
+        return dic
     }
     
     var drag: some Gesture {
@@ -68,16 +71,53 @@ struct BalloonListView: View {
                 }
                 // move to new position
                 listYOffset = newListYOffset
-            }
+                
+            } //: onChanged
             .onEnded { _ in
                 // reset
                 widthTranslation = .zero
-            }
+                
+                // focus center
+                let dicItem = itemRangeDic.first(where: {
+                    $0.key.contains(listYOffset)
+                })
+                guard let dicItem = dicItem else {
+                    return
+                }
+                let itemIndex = dicItem.value
+
+                // set focused balloon
+                let mid = (itemIndex == centerIndex) ?
+                    0 : CGFloat(centerIndex - itemIndex) * blockWidth
+                let focusToOffset = mid
+                listYOffset = focusToOffset
+                
+                // set selected balloon index
+                // 1...size    : for offset
+                // 0...size-1  : for accessing
+                let selectedBalloonIdx = itemIndex - 1
+                withAnimation {
+                    selectedIndex = selectedBalloonIdx
+                }
+                
+//                print("""
+//                        current range: \(dicItem.key)
+//                        current index: \(itemIndex)
+//                        focusToOffset: \(focusToOffset)
+//                        selectedBalloonIdx: \(selectedBalloonIdx)
+//
+//                        """
+//                )
+            
+            } //: onEnded
     }
 
     // MARK: - Body
     var body: some View {
-        HStack(spacing: 0) {
+        HStack(
+            alignment: .bottom,
+            spacing: 0
+        ) {
             
             ForEach(1...size, id: \.self) { i in
                 
@@ -94,14 +134,17 @@ struct BalloonListView: View {
                     gradientColors: balloon.gradientColors,
                     size: size
                 )
-                    .frame(width: blockWidth, alignment: .center)
-                    .background(Color.clear)
+                    .frame(width: blockWidth)
+                    .contentShape(Rectangle()) // make entire frame is tappable
                     .opacity(opacity)
                     .offset(
                         x: getXOffset(i),
-                        y: isFocused ? 0 : -70
+                        y: isFocused ? 0 : -80
                     )
-                    .animation(.easeInOut(duration: 0.6), value: listYOffset)
+                    .animation(
+                        .easeInOut(duration: 0.6),
+                        value: listYOffset
+                    )
                 
                 // add invisible item to make items size odd
                 // always centers 3 items on screen
@@ -112,11 +155,11 @@ struct BalloonListView: View {
                             width: balloon.frontViewSizeSmall.width,
                             height: balloon.frontViewSizeSmall.height
                         )
-                }
+                } //: if
                 
-            }
+            } //: ForEach
             
-        }
+        } //: HStack
         .offset(x: listYOffset)
         .gesture(drag)
     }
@@ -145,6 +188,16 @@ struct BalloonListView: View {
         return range
     }
     
+    func getXOffset(_ i: Int) -> CGFloat {
+        if i == (centerIndex - 1) {
+            return -xOffsetAnimation
+        } else if i == (centerIndex + 1) {
+            return xOffsetAnimation
+        }
+        return 0
+    }
+    
+    
 }
 
 // MARK: - Preview
@@ -155,7 +208,7 @@ struct BalloonListView_Previews: PreviewProvider {
             xOffsetAnimation: 0,
             balloons: BalloonModelData().balloons
         )
-            .previewLayout(.fixed(width: ScreenSize.width, height: 340))
+            .previewLayout(.fixed(width: ScreenSize.width, height: 300))
             .padding(.top, 70)
             .background(Colors.background2.color)
     }
